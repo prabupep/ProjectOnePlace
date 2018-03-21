@@ -13,5 +13,10 @@ namespace ProjectOnePlace.Controllers
         {
             return View();
         }
+
+        public ActionResult RequestList()
+        {
+            return View();
+        }
     }
 }
