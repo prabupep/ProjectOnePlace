@@ -1,7 +1,139 @@
 ﻿@Scripts.Render("~/Releasemodule/JS")
 <div>
-    <div ng-controller="releaserequest">
-        <input ng-model="name" />
-        <label>{{name}}</label>
+    <div ng-controller="releasenewrequest">
+        <form calss="form-inline">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-labe" for="request-id">Request ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="request-id" aria-describedby="requestidhelp" placeholder="Request ID" readonly="readonly">
+                    <small id="requestidhelp" class="form-text text-muted">Request ID will auto generate on submit of request.</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-labe" for="title">Request Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" placeholder="Title">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="prod-prev-check">Prod Preview</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" class="form-check-input" id="prod-prev-check">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="prod-prev-date">Prod Preview Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="prod-prev-date ">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="prod-cd-check">Prod CD/Live</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" class="form-check-input" id="prod-cd-check">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="prod-prev-date">Prod CD/Live Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="prod-cd-date ">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="region-select">Region</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="region-select">
+                        <option>NA</option>
+                        <option>EU</option>
+                        <option>APAC</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="region-select">Sites</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="region-select">
+                        <option>Toujeo</option>
+                        <option>Lantus</option>
+                        <option>Soliqua</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="has-tfs-check">Has TFS Files</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" class="form-check-input" id="has-tfs-check">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="has-3rdservice-check">Has 3rd Part Services</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" class="form-check-input" id="has-3rdservice-check">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="default-lang-select">Default Language</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="default-lang-select">
+                        <option>en</option>
+                        <option>en-fr</option>
+                        <option>en-uk</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="is-multi-ling-check">Is Multilingual</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" class="form-check-input" id="is-multi-ling-check">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2" for="supported-lang-select">Supported Language</label>
+                <div class="col-sm-10">
+                    <select multiple class="form-control" id="supported-lang-select">
+                        <option>en</option>
+                        <option>en-fr</option>
+                        <option>en-uk</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-labe" for="req-notice-list">Request Notification List</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="req-notice-list"  aria-describedby="req-notice-help" placeholder="Request Notification List">
+                    <small id="req-notice-help" class="form-text text-muted">Seperate email id's with ";".  ex:- email1@test.com;email2@test.com.</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-labe" for="req-status">Status</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="req-status" aria-describedby="req-status-help" placeholder="Request Status">
+                    <small id="req-notice-help" class="form-text text-muted">Status will be moved automatically.</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-labe" for="req-status">Comment</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="req-comment" aria-describedby="req-comment-help" placeholder="Comment">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-labe" for="req-reviewer">Reviewer</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="req-reviewer" aria-describedby="req-reviewer-help" placeholder="Reviewer">
+                    <small id="req-reviewer-help" class="form-text text-muted">Seperate email id's with ";".  ex:- email1@test.com;email2@test.com..</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-labe" for="req-reviewer">Reviewer Comment</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="req-reviewer" aria-describedby="req-reviewer-help" placeholder="Reviewer Comment">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
+
+
 </div>

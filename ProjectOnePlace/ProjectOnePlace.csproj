@@ -261,6 +261,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Release\NewRequest.cshtml" />
+    <Content Include="Views\Release\RequestList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
