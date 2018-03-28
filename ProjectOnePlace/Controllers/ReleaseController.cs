@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using OnePlace.Database.Entity;
 namespace ProjectOnePlace.Controllers
 {
     public class ReleaseController : Controller
@@ -11,6 +11,9 @@ namespace ProjectOnePlace.Controllers
         // GET: ReleaseRequest
         public ActionResult NewRequest()
         {
+            var db = new DBProjectOneplace();
+            //db.SaveProject(new Project { Name="Test project", Comment="", DPMID="", ProdCDURL="", ProdPreviewURL="", Region="NA" , StageCDURL="" , StagePreviewURL=""});
+
             return View();
         }
 
@@ -19,4 +22,5 @@ namespace ProjectOnePlace.Controllers
             return View();
         }
     }
+
 }

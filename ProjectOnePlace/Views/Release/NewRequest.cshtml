@@ -2,15 +2,33 @@
 <div>
     <div ng-controller="releasenewrequest">
         <form calss="form-inline">
+            @*<div class="form-group row">
+                    <label class="col-sm-2 col-form-labe" for="request-id">Release ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="request-id" aria-describedby="requestidhelp" placeholder="Request ID" readonly="readonly">
+                        <small id="requestidhelp" class="form-text text-muted">Request ID will auto generate on submit of request.</small>
+                    </div>
+                </div>*@
             <div class="form-group row">
-                <label class="col-sm-2 col-form-labe" for="request-id">Request ID</label>
+                <label class="col-sm-2" for="region-select">Region</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="request-id" aria-describedby="requestidhelp" placeholder="Request ID" readonly="readonly">
-                    <small id="requestidhelp" class="form-text text-muted">Request ID will auto generate on submit of request.</small>
+                    <select class="form-control" id="region-select">
+                        <option>NA</option>
+                        <option>EU</option>
+                        <option>APAC</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-labe" for="title">Request Title</label>
+                <label class="col-sm-2" for="region-select">Project</label>
+                <div class="col-sm-4">
+                    <select class="form-control" ng-options="project as project.Name for project in projects track by project.ProjectID" ng-show="!showaddproject" ng-model="projectid"></select>
+                    <input type="text" class="form-control" id="projectid" placeholder="Project" ng-show="showaddproject">
+                </div>
+                <div class="col-sm-6"><a id="a-add-project" ng-click="addprojectclick()" href="#">{{NewProject}}</a> </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-labe" for="title">Release Title</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="title" placeholder="Title">
                 </div>
@@ -39,34 +57,19 @@
                     <input type="date" class="form-control" id="prod-cd-date ">
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-2" for="region-select">Region</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="region-select">
-                        <option>NA</option>
-                        <option>EU</option>
-                        <option>APAC</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2" for="region-select">Sites</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="region-select">
-                        <option>Toujeo</option>
-                        <option>Lantus</option>
-                        <option>Soliqua</option>
-                    </select>
-                </div>
-            </div>
+
+
             <div class="form-group row">
                 <label class="col-sm-2" for="has-tfs-check">Has TFS Files</label>
-                <div class="col-sm-10">
+                <div class="col-sm-6">
                     <input type="checkbox" class="form-check-input" id="has-tfs-check">
                 </div>
+                <div class="col-sm-4"><a id="a-add-tfs" ng-click="addTfsDetails()" href="#">{{TfsDetail}}</a> </div>
             </div>
+           
+
             <div class="form-group row">
-                <label class="col-sm-2" for="has-3rdservice-check">Has 3rd Part Services</label>
+                <label class="col-sm-2" for="has-3rdservice-check">Has 3rd Party Services</label>
                 <div class="col-sm-10">
                     <input type="checkbox" class="form-check-input" id="has-3rdservice-check">
                 </div>
@@ -100,21 +103,26 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-labe" for="req-notice-list">Request Notification List</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="req-notice-list"  aria-describedby="req-notice-help" placeholder="Request Notification List">
+                    <input type="text" class="form-control" id="req-notice-list" aria-describedby="req-notice-help" placeholder="Request Notification List">
                     <small id="req-notice-help" class="form-text text-muted">Seperate email id's with ";".  ex:- email1@test.com;email2@test.com.</small>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-labe" for="req-status">Status</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="req-status" aria-describedby="req-status-help" placeholder="Request Status">
-                    <small id="req-notice-help" class="form-text text-muted">Status will be moved automatically.</small>
+                    <select class="form-control" id="status-select">
+                        <option>Open</option>
+                        <option>In Progress</option>
+                        <option>Pending</option>
+                        <option>Completed</option>
+                        <option>Cancelled</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-labe" for="req-status">Comment</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="req-comment" aria-describedby="req-comment-help" placeholder="Comment">
+                    <textarea class="form-control" id="req-comment"> </textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -124,16 +132,13 @@
                     <small id="req-reviewer-help" class="form-text text-muted">Seperate email id's with ";".  ex:- email1@test.com;email2@test.com..</small>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-labe" for="req-reviewer">Reviewer Comment</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="req-reviewer" aria-describedby="req-reviewer-help" placeholder="Reviewer Comment">
-                </div>
-            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+
+
 
 
 </div>
